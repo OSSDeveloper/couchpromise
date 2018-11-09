@@ -9,7 +9,7 @@ couchbase SDK for Node.js - with promises
 
 # Installation
 
- npm install --save couchpromise
+ npm install --save @ossdeveloper/couchpromise
 
 # To open connection to a couchbase cluster
 
