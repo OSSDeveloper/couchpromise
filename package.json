@@ -1,0 +1,31 @@
+{
+  "name": "couchpromise",
+  "version": "1.0.0",
+  "description": "Couchbase SDK for node.js - with promises",
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSSDeveloper/couchpromise.git"
+  },
+  "keywords": [
+    "couchbase",
+    "node.js",
+    "couchnode"
+  ],
+  "author": "Vijay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OSSDeveloper/couchpromise/issues"
+  },
+  "homepage": "https://github.com/OSSDeveloper/couchpromise#readme",
+  "dependencies": {
+    "couchbase": "^2.6.0",
+    "q": "^1.5.1"
+  }
+}
