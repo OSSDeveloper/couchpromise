@@ -39,16 +39,33 @@ couchbase SDK for Node.js - with promises
              console.error(e);
          });
 
-    ### Async/Await
 
-    async function openConnections(){
 
-        let connectionOperation = await cluster.openConnections(username, password,aryBuckets,aryIPs)
 
-        let buckets = await cluster.getBuckets()
-        return await buckets
+ ## To get a single record
+
+   ### Trying to use both async/await and regular promise chaining methods below. You can use your preferred way
+
+    async function getSingleRecord(){
+
+        buckets = await cluster.getBuckets();
+
+        let record = await getSingle('someKey', buckets['default'])
+
+        return await record
     }
 
-    let buckets = openConnections() // buckets is an object containing all the buckets
+
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+        .then((done) =>{
+
+            getSingleRecord()
+                .then(console.log,console.error)
+
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+
 
 # All the couchbase bucket methods can be executed with above buckets.
