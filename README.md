@@ -51,4 +51,4 @@ couchbase SDK for Node.js - with promises
 
     let buckets = openConnections() // buckets is an object containing all the buckets
 
-
+# All the couchbase bucket methods can be executed with above buckets.
