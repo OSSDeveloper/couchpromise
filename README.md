@@ -50,29 +50,30 @@ couchbase SDK for Node.js - with promises
 
    ### Trying to use both async/await and regular promise chaining methods below. You can use your preferred way
 
-   let cluster = require(''@ossdeveloper/couchpromise').cluster
-   let getSingle = require('@ossdeveloper/couchpromise').getSingle
 
-    async function getSingleRecord(){
+       let cluster = require(''@ossdeveloper/couchpromise').cluster
+       let getSingle = require('@ossdeveloper/couchpromise').getSingle
 
-        buckets = await cluster.getBuckets();
+        async function getSingleRecord(){
 
-        let record = await getSingle('someKey', buckets['default'])
+            buckets = await cluster.getBuckets();
 
-        return await record
-    }
+            let record = await getSingle('someKey', buckets['default'])
+
+            return await record
+        }
 
 
-    cluster.openConnections(username, password,aryBuckets,aryIPs)
-        .then((done) =>{
+        cluster.openConnections(username, password,aryBuckets,aryIPs)
+            .then((done) =>{
 
-            getSingleRecord()
-                .then(console.log,console.error)
+                getSingleRecord()
+                    .then(console.log,console.error)
 
-        })
-        .catch((e) => {
-            console.error(e);
-        });
+            })
+            .catch((e) => {
+                console.error(e);
+            });
 
 
 # All the regular couchbase bucket methods provided by couchbase can be executed with above buckets. Methods provided above are addition to regular couchbase provided methods.
