@@ -1,9 +1,12 @@
 
-    let db = require('./lib/connection')
-    let getSingle = require('./lib/getSingle').getSingle
-    let getMulti = require('./lib/getMulti').getMulti
 
-    exports.cluster = db
-    exports.getSingle = getSingle
-    exports.getMulti = getMulti
+	exports.cluster = require('./lib/connection')
+    exports.getSingle = require('./lib/getSingle').getSingle
+    exports.getMulti = require('./lib/getMulti').getMulti
+	exports.insertSingle = require('./lib/insertSingle').insertSingle
+	exports.removeSingle = require('./lib/removeSingle').removeSingle
+	exports.replaceSingle = require('./lib/replaceSingle').replaceSingle
+	exports.upsertSingle = require('./lib/upsertSingle').upsertSingle
+	exports.getAndTouchSingle = require('./lib/getAndTouchSingle').getAndTouchSingle
+	
 
