@@ -76,4 +76,6 @@ couchbase SDK for Node.js - with promises
             });
 
 
-# All the regular couchbase bucket methods provided by couchbase can be executed with above buckets. Methods provided above are addition to regular couchbase provided methods.
+# All the regular couchbase bucket methods provided by couchbase can be executed with above buckets.
+
+##Methods provided by couchpromise are addition to regular couchbase provided methods - with promises
