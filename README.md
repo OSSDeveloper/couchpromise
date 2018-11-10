@@ -11,9 +11,13 @@ couchbase SDK for Node.js - with promises
 
  npm install --save @ossdeveloper/couchpromise
 
-# To open connection to a couchbase cluster
+ Above command installs couchbase and 'q' promise library as dependencies.
 
- ## Parameters
+#Useage
+
+## To open connection to a couchbase cluster
+
+ ### Parameters
 
    1. username : String
    2. password : String
@@ -22,7 +26,7 @@ couchbase SDK for Node.js - with promises
 
    Example :
 
-     let cluster = require('couchpromise').cluster
+     let cluster = require(''@ossdeveloper/couchpromise').cluster
 
      let username = 'username';
      let password = 'password';
@@ -46,6 +50,9 @@ couchbase SDK for Node.js - with promises
 
    ### Trying to use both async/await and regular promise chaining methods below. You can use your preferred way
 
+   let cluster = require(''@ossdeveloper/couchpromise').cluster
+   let getSingle = require('@ossdeveloper/couchpromise').getSingle
+
     async function getSingleRecord(){
 
         buckets = await cluster.getBuckets();
@@ -68,4 +75,4 @@ couchbase SDK for Node.js - with promises
         });
 
 
-# All the couchbase bucket methods can be executed with above buckets.
+# All the regular couchbase bucket methods provided by couchbase can be executed with above buckets. Methods provided above are addition to regular couchbase provided methods.

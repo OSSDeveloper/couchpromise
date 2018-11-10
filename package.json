@@ -1,6 +1,6 @@
 {
   "name": "@ossdeveloper/couchpromise",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Couchbase SDK for node.js - with promises",
   "engines": {
     "node": ">=10.13.0"
