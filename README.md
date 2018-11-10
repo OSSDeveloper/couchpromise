@@ -26,7 +26,7 @@ couchbase SDK for Node.js - with promises
 
    Example :
 
-     let cluster = require(''@ossdeveloper/couchpromise').cluster
+     let cluster = require('@ossdeveloper/couchpromise').cluster
 
      let username = 'username';
      let password = 'password';
@@ -51,7 +51,7 @@ couchbase SDK for Node.js - with promises
    ### Trying to use both async/await and regular promise chaining methods below. You can use your preferred way
 
 
-       let cluster = require(''@ossdeveloper/couchpromise').cluster
+       let cluster = require('@ossdeveloper/couchpromise').cluster
        let getSingle = require('@ossdeveloper/couchpromise').getSingle
 
         async function getSingleRecord(){

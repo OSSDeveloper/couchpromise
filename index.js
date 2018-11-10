@@ -1,7 +1,7 @@
 
-    let db = require('./lib/connection');
-    let getSingle = require('./lib/getSingle')
-    let getMulti = require('./lib/getMulti')
+    let db = require('./lib/connection')
+    let getSingle = require('./lib/getSingle').getSingle
+    let getMulti = require('./lib/getMulti').getMulti
 
     exports.cluster = db
     exports.getSingle = getSingle
