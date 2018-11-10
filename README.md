@@ -1,5 +1,6 @@
 # couchpromise - under development
-couchbase SDK for Node.js - with promises
+
+ ### couchbase SDK for Node.js - with promises
 
 
 # Prerequisites
@@ -13,7 +14,7 @@ couchbase SDK for Node.js - with promises
 
  Above command installs couchbase and 'q' promise library as dependencies.
 
-#Useage
+# Usage
 
 ## To open connection to a couchbase cluster
 
@@ -76,5 +77,5 @@ couchbase SDK for Node.js - with promises
             });
 
 
-## All the regular couchbase bucket methods provided by couchbase can be executed with above buckets.
-## Methods provided by couchpromise are addition to regular couchbase provided methods - with promises
+### All the regular couchbase bucket methods provided by couchbase can be executed with above buckets.
+### Methods provided by couchpromise are addition to regular couchbase provided methods - with promises
