@@ -6,7 +6,7 @@
 
 ### Prerequisites
 
- 1. Ensure node-gyp is installed globally
+ 1. Ensure node-gyp is installed globally(npm install -g node-gyp)
  2. node.js version >= 10.13.0
 
 ### Installation
@@ -35,10 +35,6 @@
 
 ### Usage
 
-##### Trying to use both async/await and regular promise chaining methods below. You can use the methods directly without wrapping it in async/await
-
-##### Tip : Try to apply your transformations on db record data in the async function block and business logic in promise chaining block. Would keep your code clean and tidy.
-
  #### 1. To open connection
 
  ##### Parameters
@@ -52,191 +48,173 @@
    
     let cluster = require('@ossdeveloper/couchpromise').cluster
     let buckets = {};
+     
      let username = 'username';
      let password = 'password';
      let aryBuckets = ['default','bucket2'];
      let aryIPs = ['xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx'];
-    
-    ##### Regular promise chaining
-    
+        
      cluster.openConnections(username, password,aryBuckets,aryIPs)
          .then((done) =>{
+	 
 	         buckets = cluster.getBuckets() // cluster.getBuckets() function returns an object containing all the buckets
+     
              console.log(buckets) 
          })
-         .catch((e) => {
-             console.error(e);
-         });
+         .catch((e) => console.error(e))
 
  #### 2. To insert a single record
 
-       let cluster = require('@ossdeveloper/couchpromise').cluster
-       let insertSingle = require('@ossdeveloper/couchpromise').insertSingle
-       
-        async function insertSingleRecord(strKey, objDocument, objBucket, objOptions){
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let insertSingle = require('@ossdeveloper/couchpromise').insertSingle
 
-            let result = await insertSingle(strKey, objDocument, objBucket, objOptions)
-
-            return await result
-        }
-
-
-        cluster.openConnections(username, password,aryBuckets,aryIPs)
-            .then((done) =>{
-            
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+        .then((done) =>{
+        
             let strKey = 'uniqueKey'
             let objDocument = {"test": "test"}
             let objOptions = {}
             let objBucket = cluster.getBuckets()['default']
+    
+            insertSingle(strKey, objDocument, objBucket, objOptions)
             
-                insertSingleRecord(strKey, objDocument, objBucket, objOptions){
-                    .then(console.log,console.error)
-
-            })
-            .catch((e) => {
-                console.error(e);
-            });
+                .then((result) => console.log(result))
+                
+                .catch((e) => console.log(e))   
+        
+        })
+        
+        .catch((e) => console.error(e));
 
 #### 3. To upsert a single record
 
-       let cluster = require('@ossdeveloper/couchpromise').cluster
-       let upsertSingle = require('@ossdeveloper/couchpromise').upsertSingle
-       
-        async function upsertSingleRecord(strKey, objDocument, objBucket, objOptions){
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let upsertSingle = require('@ossdeveloper/couchpromise').upsertSingle
+
+          
+
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+        .then((done) =>{
         
-            let result = await upsertSingle(strKey, objDocument, objBucket, objOptions)
-
-            return await result
-        }
-
-
-        cluster.openConnections(username, password,aryBuckets,aryIPs)
-            .then((done) =>{
+        let strKey = 'uniqueKey'
+        let objDocument = {"test": "test"}
+        let objOptions = {}
+        let objBucket = cluster.getBuckets()['default']
+        
+        upsertSingle(strKey, objDocument, objBucket, objOptions)
+        
+            .then((result) => console.log(result))
             
-            let strKey = 'uniqueKey'
-            let objDocument = {"test": "test"}
-            let objOptions = {}
-            let objBucket = cluster.getBuckets()['default']
-            
-                upsertSingleRecord(strKey, objDocument, objBucket, objOptions){
-                    .then(console.log,console.error)
-
-            })
-            .catch((e) => {
-                console.error(e);
-            });
+            .catch((e) => console.error(e))
+        
+        })
+        
+        .catch((e) => {
+            console.error(e);
+        });
 
 #### 4. To replace a single record
 
-       let cluster = require('@ossdeveloper/couchpromise').cluster
-       let replaceSingle = require('@ossdeveloper/couchpromise').replaceSingle
-       
-        async function replaceSingleRecord(strKey, objDocument, objBucket, objOptions){
-
-            let result = await replaceSingle(strKey, objDocument, objBucket, objOptions)
-
-            return await result
-        }
-
-
-        cluster.openConnections(username, password,aryBuckets,aryIPs)
-            .then((done) =>{
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let replaceSingle = require('@ossdeveloper/couchpromise').replaceSingle
+    
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+    
+        .then((done) =>{
+        
+        let strKey = 'uniqueKey'
+        let objDocument = {"test": "test"}
+        let objOptions = {}
+        let objBucket = cluster.getBuckets()['default']
+        
+        replaceSingle(strKey, objDocument, objBucket, objOptions)
             
-            let strKey = 'uniqueKey'
-            let objDocument = {"test": "test"}
-            let objOptions = {}
-            let objBucket = cluster.getBuckets()['default']
+            .then((result) => console.log(result))
             
-                replaceSingleRecord(strKey, objDocument, objBucket, objOptions){
-                    .then(console.log,console.error)
+            .catch((e) => console.error(e))
 
-            })
-            .catch((e) => {
-                console.error(e);
-            });
+        })
+        
+        .catch((e) => console.error(e))
 
 #### 5. To remove a single record
 
-       let cluster = require('@ossdeveloper/couchpromise').cluster
-       let removeSingle = require('@ossdeveloper/couchpromise').removeSingle
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let removeSingle = require('@ossdeveloper/couchpromise').removeSingle
 
-        async function removeSingleRecord(strKey, objBucket){
+    
 
-            let result = await removeSingle(strKey, objBucket)
-
-            return await result
-        }
-
-        cluster.openConnections(username, password,aryBuckets,aryIPs)
-            .then((done) =>{
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+        
+        .then((done) =>{
+        
+        let strKey = 'uniqueKey'
+        let objOptions = {}
+        let objBucket = cluster.getBuckets()['default']
+        
+        removeSingle(strKey, objBucket)
+        
+            .then((result) => console.log(result))
             
-            let strKey = 'uniqueKey'
-            let objOptions = {}
-            let objBucket = cluster.getBuckets()['default']
-            
-                removeSingleRecord(strKey, objBucket, objOptions){
-                    .then(console.log,console.error)
+            .catch((e) => console.error(e))
 
-            })
-            .catch((e) => {
-                console.error(e);
-            });
+        })
+        
+        .catch((e) => console.error(e))
 
 
  #### 6. To get a single record
 
-       let cluster = require('@ossdeveloper/couchpromise').cluster
-       let getSingle = require('@ossdeveloper/couchpromise').getSingle
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let getSingle = require('@ossdeveloper/couchpromise').getSingle
 
-        async function getSingleRecord(dbKey, objBucket){
+    
 
-            let record = await getSingle(dbKey, objBucket)
-
-            return await record
-        }
-
-
-        cluster.openConnections(username, password,aryBuckets,aryIPs)
-            .then((done) =>{
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+        
+        .then((done) =>{
+        
+        let strKey = 'uniqueKey'
+        let objBucket = cluster.getBuckets()['default']
+        
+        getSingle(dbKey, objBucket)
+        
+            .then((result) => console.log(result))
             
-            let strKey = 'uniqueKey'
-            let objBucket = cluster.getBuckets()['default']
-            
-                getSingleRecord(strKey, objBucket)
-                    .then(console.log,console.error)
+            .catch((e) => console.error(e))
 
-            })
-            .catch((e) => {
-                console.error(e);
-            });
+        })
+        
+        .catch((e) => {
+            console.error(e);
+        });
 
 
 
  #### 7. To execute N1QL Query and receive results
 
-        let cluster = require('@ossdeveloper/couchpromise').cluster
-        let getN1QLResults = require('@ossdeveloper/couchpromise').getN1QLResults
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let getN1QLResults = require('@ossdeveloper/couchpromise').getN1QLResults
 
-         async function getN1QLQueryResults(strQuery, objBucket){
-
-             let results = await getN1QLResults(strQuery, objBucket)
-
-             return await results
-         }
+    
 
 
-         cluster.openConnections(username, password,aryBuckets,aryIPs)
-             .then((done) =>{
-
-             let strQuery = 'select * from efault limit 10' // To get 10 random records from default bucket
-             let objBucket = cluster.getBuckets()['default']
-
-                 getN1QLQueryResults(strQuery, objBucket)
-                     .then(console.log,console.error)
-
-             })
-             .catch((e) => {
-                 console.error(e);
-             });
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+     .then((done) =>{
+    
+     let strQuery = 'select * from default limit 10' // To get 10 records from default bucket
+     
+     let objBucket = cluster.getBuckets()['default']
+    
+     getN1QLResults(strQuery, objBucket)
+     
+        .then((result) => console.log(result))
+        
+        .catch((e) => console.error(e))
+    
+     })
+     .catch((e) => {
+         console.error(e);
+     });
 
 ### Happy Coding...
