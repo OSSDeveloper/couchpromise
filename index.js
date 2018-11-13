@@ -8,7 +8,7 @@
 	exports.replaceSingle = require('./lib/replaceSingle').replaceSingle
 	exports.upsertSingle = require('./lib/upsertSingle').upsertSingle
 	exports.getAndTouchSingle = require('./lib/getAndTouchSingle').getAndTouchSingle
-	
 	exports.getN1QLResults = require('./lib/getN1QLResults').getN1QlResults
 	
-
+	
+	

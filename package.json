@@ -1,6 +1,6 @@
 {
   "name": "@ossdeveloper/couchpromise",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Couchbase SDK for node.js - with promises",
   "engines": {
     "node": ">=10.13.0"
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/OSSDeveloper/couchpromise#readme",
   "dependencies": {
     "couchbase": "^2.6.0",
+    "jsen": "^0.6.6",
     "q": "^1.5.1"
   }
 }

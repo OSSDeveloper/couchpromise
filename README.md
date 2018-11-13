@@ -55,13 +55,24 @@
      let aryIPs = ['xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx'];
         
      cluster.openConnections(username, password,aryBuckets,aryIPs)
-         .then((done) =>{
-	 
-	         buckets = cluster.getBuckets() // cluster.getBuckets() function returns an object containing all the buckets
-     
-             console.log(buckets) 
-         })
-         .catch((e) => console.error(e))
+     	.then((result) =>{
+     			
+            if(result.errors.length === 0){
+    
+                buckets = cluster.getBuckets()
+                console.log(result.buckets)
+    
+            }else{
+    
+                console.error(result.errors)
+    
+            }
+
+            
+        })
+        .catch((e) => {
+            console.error(e)
+        })
 
  #### 2. To insert a single record
 
@@ -69,7 +80,7 @@
     let insertSingle = require('@ossdeveloper/couchpromise').insertSingle
 
     cluster.openConnections(username, password,aryBuckets,aryIPs)
-        .then((done) =>{
+        .then((result) =>{
         
             let strKey = 'uniqueKey'
             let objDocument = {"test": "test"}
@@ -94,7 +105,7 @@
           
 
     cluster.openConnections(username, password,aryBuckets,aryIPs)
-        .then((done) =>{
+        .then((result) =>{
         
         let strKey = 'uniqueKey'
         let objDocument = {"test": "test"}
@@ -120,7 +131,7 @@
     
     cluster.openConnections(username, password,aryBuckets,aryIPs)
     
-        .then((done) =>{
+        .then((result) =>{
         
         let strKey = 'uniqueKey'
         let objDocument = {"test": "test"}
@@ -146,7 +157,7 @@
 
     cluster.openConnections(username, password,aryBuckets,aryIPs)
         
-        .then((done) =>{
+        .then((result) =>{
         
         let strKey = 'uniqueKey'
         let objOptions = {}
@@ -172,7 +183,7 @@
 
     cluster.openConnections(username, password,aryBuckets,aryIPs)
         
-        .then((done) =>{
+        .then((result) =>{
         
         let strKey = 'uniqueKey'
         let objBucket = cluster.getBuckets()['default']
@@ -200,7 +211,7 @@
 
 
     cluster.openConnections(username, password,aryBuckets,aryIPs)
-     .then((done) =>{
+     .then((result) =>{
     
      let strQuery = 'select * from default limit 10' // To get 10 records from default bucket
      
