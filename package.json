@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha || true"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,10 @@
     "couchbase": "^2.6.0",
     "jsen": "^0.6.6",
     "q": "^1.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }

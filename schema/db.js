@@ -16,22 +16,24 @@ module.exports = {
 		"aryBuckets": {
 			type: 'array',
 			minItems: 1,
-			"items":{
-				"type": "string",
-				"minlength": 1
+			uniqueItems: true,
+			items:{
+				type: 'string',
+				minItems: 1,
+				minLength: 1
+				
 			},
-			invalidMessage: 'Invalid array of buckets',
 			requiredMessage: 'An array of buckets present in your couchbase cluster is required'
 		},
 		"aryIps": {
 			type: 'array',
 			minItems: 1,
-			"items":{
-				"type": "string",
-				"minlength": 1,
-				"format": "ipv4"
+			uniqueItems: true,
+			items:{
+				type: 'string',
+				minlength: 1,
+				format: 'ipv4'
 			},
-			invalidMessage: 'Invalid array of Ips',
 			requiredMessage: 'An array of valid IP addresses of your couchbase cluster is required'
 		}
 	},

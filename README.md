@@ -24,7 +24,7 @@
 
 ** You can use this library like regular couchbase node.js sdk and, use below methods for promises **
  
- 1. opening a connection : [openConnections](#1-to-open-connection)
+ 1. Settingup buckets(DB connection) : [setupBuckets](#1-to-setup-buckets)
  2. insert : [insertSingle](#2-to-insert-a-single-record)
  3. upsert : [upsertSingle](#3-to-upsert-a-single-record)
  4. replace : [replaceSingle](#4-to-replace-a-single-record)
@@ -35,44 +35,46 @@
 
 ### Usage
 
- #### 1. To open connection
+ #### 1. To setup Buckets
 
  ##### Parameters
  
    1. username : String
+   
    2. password : String
-   3. aryBuckets : an array of bucket names in your couchbase cluster. each item(bucket name) is a string : array
-   4. aryIps : an array of IP addresses of your couchbase cluster. each item(ip) is a string : array
+   
+   3. aryBuckets : array -> an array of bucket names in your couchbase cluster. each item(bucket name) is a string
+   
+   4. aryIps : array ->  an array of IP addresses of your couchbase cluster. each item(ip) is a string 
 
    ##### Example :
    
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let buckets = {};
      
      let username = 'username';
      let password = 'password';
      let aryBuckets = ['default','bucket2'];
      let aryIPs = ['xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx'];
-        
-     cluster.openConnections(username, password,aryBuckets,aryIPs)
-     	.then((result) =>{
+     
+     
+     db.setupBuckets(username, password,aryBuckets,aryIPs)
+     		.then((result) =>{
      			
-            if(result.errors.length === 0){
-    
-                buckets = cluster.getBuckets()
-                console.log(result.buckets)
-    
-            }else{
-    
-                console.error(result.errors)
-    
-            }
-
-            
-        })
-        .catch((e) => {
-            console.error(e)
-        })
+     			if(result === true){
+     				buckets = db.getBuckets() //Get buckets method returns an object containing buckets
+     				console.log("Buckets setup : ", buckets)
+     				
+     			}else{
+     				console.error(result)
+     			}
+     			
+     		})
+     		.catch((e) => {
+     			console.error(e)
+     		})
+   
+     
 
  #### 2. To insert a single record
 
@@ -227,5 +229,36 @@
      .catch((e) => {
          console.error(e);
      });
+
+
+
+## Multiple operations
+
+#### 8. To get Multiple records
+
+    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let getSingle = require('@ossdeveloper/couchpromise').getSingle
+
+    
+
+    cluster.openConnections(username, password,aryBuckets,aryIPs)
+        
+        .then((result) =>{
+        
+        let strKey = 'uniqueKey'
+        let objBucket = cluster.getBuckets()['default']
+        
+        getMulti(['key1','key2'],objBucket)
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((e) => {
+                console.error(e)
+            })
+        
+        .catch((e) => {
+            console.error(e);
+        });
+
 
 ### Happy Coding...
