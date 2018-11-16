@@ -57,23 +57,23 @@
      let aryBuckets = ['default','bucket2'];
      let aryIPs = ['xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx','xxx.xxx.xxx.xxx'];
      
-     
      db.setupBuckets(username, password,aryBuckets,aryIPs)
-     		.then((result) =>{
-     			
-     			if(result === true){
-     				buckets = db.getBuckets() //Get buckets method returns an object containing buckets
-     				console.log("Buckets setup : ", buckets)
-     				
-     			}else{
-     				console.error(result)
-     			}
-     			
-     		})
-     		.catch((e) => {
-     			console.error(e)
-     		})
-   
+        .then((result) =>{
+            
+            if(result === true){
+                
+                buckets = db.getBuckets()
+                
+                console.log(buckets)
+                
+            }else{
+                console.error(result)
+            }
+            
+        })
+        .catch((e) => {
+            console.error(e)
+        })
      
 
  #### 2. To insert a single record
@@ -236,7 +236,7 @@
 
 #### 8. To get Multiple records
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('./index').buckets
     let getSingle = require('@ossdeveloper/couchpromise').getSingle
 
     
