@@ -1,5 +1,5 @@
 
-## @ossdeveloper/couchpromise - As Promised
+## @ossdeveloper/couchpromise - As Promised : *Under active development*
 
  #### couchbase SDK for Node.js - with promises
 
@@ -84,16 +84,25 @@
     cluster.openConnections(username, password,aryBuckets,aryIPs)
         .then((result) =>{
         
-            let strKey = 'uniqueKey'
-            let objDocument = {"test": "test"}
-            let objOptions = {}
-            let objBucket = cluster.getBuckets()['default']
-    
-            insertSingle(strKey, objDocument, objBucket, objOptions)
-            
-                .then((result) => console.log(result))
+            if(result === true){
+                            
+                buckets = db.getBuckets()
                 
-                .catch((e) => console.log(e))   
+                let strKey = 'uniqueKey'
+                let objDocument = {"test": "test"}
+                let objOptions = {}
+                let objBucket = cluster.getBuckets()['default']
+        
+                insertSingle(strKey, objDocument, objBucket, objOptions)
+                
+                    .then((result) => console.log(result))
+                    
+                    .catch((e) => console.log(e))
+                
+            }else{
+                console.error(result)
+            }
+           
         
         })
         
@@ -109,18 +118,24 @@
     cluster.openConnections(username, password,aryBuckets,aryIPs)
         .then((result) =>{
         
-        let strKey = 'uniqueKey'
-        let objDocument = {"test": "test"}
-        let objOptions = {}
-        let objBucket = cluster.getBuckets()['default']
+            if(result === true){
+                                        
+                buckets = db.getBuckets()
+                
+                let strKey = 'uniqueKey'
+                let objDocument = {"test": "test"}
+                let objOptions = {}
+                let objBucket = cluster.getBuckets()['default']
         
-        upsertSingle(strKey, objDocument, objBucket, objOptions)
-        
-            .then((result) => console.log(result))
-            
-            .catch((e) => console.error(e))
-        
-        })
+                upsertSingle(strKey, objDocument, objBucket, objOptions)
+                
+                    .then((result) => console.log(result))
+                    
+                    .catch((e) => console.log(e))
+                
+            }else{
+                console.error(result)
+            }
         
         .catch((e) => {
             console.error(e);
@@ -135,16 +150,23 @@
     
         .then((result) =>{
         
-        let strKey = 'uniqueKey'
-        let objDocument = {"test": "test"}
-        let objOptions = {}
-        let objBucket = cluster.getBuckets()['default']
+            if(result === true){
+                                                
+                buckets = db.getBuckets()
+                
+                let strKey = 'uniqueKey'
+                let objDocument = {"test": "test"}
+                let objOptions = {}
+                let objBucket = cluster.getBuckets()['default']
         
-        replaceSingle(strKey, objDocument, objBucket, objOptions)
-            
-            .then((result) => console.log(result))
-            
-            .catch((e) => console.error(e))
+                replaceSingle(strKey, objDocument, objBucket, objOptions)
+                    .then((result) => console.log(result))
+                    .catch((e) => console.error(e))
+                
+            }else{
+                console.error(result)
+            }
+        
 
         })
         
@@ -161,15 +183,24 @@
         
         .then((result) =>{
         
-        let strKey = 'uniqueKey'
-        let objOptions = {}
-        let objBucket = cluster.getBuckets()['default']
+            if(result === true){
+                                                        
+                buckets = db.getBuckets()
+                
+                let strKey = 'uniqueKey'
+                let objDocument = {"test": "test"}
+                let objOptions = {}
+                let objBucket = cluster.getBuckets()['default']
         
-        removeSingle(strKey, objBucket)
-        
-            .then((result) => console.log(result))
-            
-            .catch((e) => console.error(e))
+                removeSingle(strKey, objBucket)
+                        
+                    .then((result) => console.log(result))
+                    
+                    .catch((e) => console.error(e))
+                
+            }else{
+                console.error(result)
+            }
 
         })
         
@@ -187,15 +218,25 @@
         
         .then((result) =>{
         
-        let strKey = 'uniqueKey'
-        let objBucket = cluster.getBuckets()['default']
+            if(result === true){
+                                                                    
+                buckets = db.getBuckets()
+                
+                let strKey = 'uniqueKey'
+                let objDocument = {"test": "test"}
+                let objOptions = {}
+                let objBucket = cluster.getBuckets()['default']
         
-        getSingle(dbKey, objBucket)
+                getSingle(dbKey, objBucket)
+                
+                    .then((result) => console.log(result))
+                    
+                    .catch((e) => console.error(e))
+                
+            }else{
+                console.error(result)
+            }
         
-            .then((result) => console.log(result))
-            
-            .catch((e) => console.error(e))
-
         })
         
         .catch((e) => {
@@ -209,23 +250,26 @@
     let cluster = require('@ossdeveloper/couchpromise').cluster
     let getN1QLResults = require('@ossdeveloper/couchpromise').getN1QLResults
 
-    
-
-
     cluster.openConnections(username, password,aryBuckets,aryIPs)
      .then((result) =>{
-    
-     let strQuery = 'select * from default limit 10' // To get 10 records from default bucket
-     
-     let objBucket = cluster.getBuckets()['default']
-    
-     getN1QLResults(strQuery, objBucket)
-     
-        .then((result) => console.log(result))
+
+        if(result === true){
         
-        .catch((e) => console.error(e))
+            let strQuery = 'select * from default limit 10' // To get 10 records from default bucket
+                 
+            let objBucket = cluster.getBuckets()['default']
+                
+            getN1QLResults(strQuery, objBucket)
+                 
+                .then((result) => console.log(result))
+                    
+                .catch((e) => console.error(e))        
+        }else{
+            
+        }
+
     
-     })
+    })
      .catch((e) => {
          console.error(e);
      });
@@ -245,16 +289,20 @@
         
         .then((result) =>{
         
-        let strKey = 'uniqueKey'
-        let objBucket = cluster.getBuckets()['default']
-        
-        getMulti(['key1','key2'],objBucket)
-            .then((result) => {
-                console.log(result)
-            })
-            .catch((e) => {
-                console.error(e)
-            })
+            if(result === true){
+                
+            }else{
+                let strKey = ['key1','key2']
+                let objBucket = cluster.getBuckets()['default']
+                
+                getMulti(strKey,objBucket)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((e) => {
+                        console.error(e)
+                    })
+            }
         
         .catch((e) => {
             console.error(e);
