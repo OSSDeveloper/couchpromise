@@ -78,7 +78,7 @@
 
  #### 2. To insert a single record
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let insertSingle = require('@ossdeveloper/couchpromise').insertSingle
 
     cluster.openConnections(username, password,aryBuckets,aryIPs)
@@ -91,7 +91,7 @@
                 let strKey = 'uniqueKey'
                 let objDocument = {"test": "test"}
                 let objOptions = {}
-                let objBucket = cluster.getBuckets()['default']
+                let objBucket = db.getBuckets()['default']
         
                 insertSingle(strKey, objDocument, objBucket, objOptions)
                 
@@ -110,7 +110,7 @@
 
 #### 3. To upsert a single record
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let upsertSingle = require('@ossdeveloper/couchpromise').upsertSingle
 
           
@@ -125,7 +125,7 @@
                 let strKey = 'uniqueKey'
                 let objDocument = {"test": "test"}
                 let objOptions = {}
-                let objBucket = cluster.getBuckets()['default']
+                let objBucket = db.getBuckets()['default']
         
                 upsertSingle(strKey, objDocument, objBucket, objOptions)
                 
@@ -143,7 +143,7 @@
 
 #### 4. To replace a single record
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let replaceSingle = require('@ossdeveloper/couchpromise').replaceSingle
     
     cluster.openConnections(username, password,aryBuckets,aryIPs)
@@ -157,7 +157,7 @@
                 let strKey = 'uniqueKey'
                 let objDocument = {"test": "test"}
                 let objOptions = {}
-                let objBucket = cluster.getBuckets()['default']
+                let objBucket = db.getBuckets()['default']
         
                 replaceSingle(strKey, objDocument, objBucket, objOptions)
                     .then((result) => console.log(result))
@@ -174,7 +174,7 @@
 
 #### 5. To remove a single record
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let removeSingle = require('@ossdeveloper/couchpromise').removeSingle
 
     
@@ -209,7 +209,7 @@
 
  #### 6. To get a single record
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let getSingle = require('@ossdeveloper/couchpromise').getSingle
 
     
@@ -225,7 +225,7 @@
                 let strKey = 'uniqueKey'
                 let objDocument = {"test": "test"}
                 let objOptions = {}
-                let objBucket = cluster.getBuckets()['default']
+                let objBucket = db.getBuckets()['default']
         
                 getSingle(dbKey, objBucket)
                 
@@ -247,17 +247,17 @@
 
  #### 7. To execute N1QL Query and receive results
 
-    let cluster = require('@ossdeveloper/couchpromise').cluster
+    let db = require('@ossdeveloper/couchpromise').buckets
     let getN1QLResults = require('@ossdeveloper/couchpromise').getN1QLResults
 
-    cluster.openConnections(username, password,aryBuckets,aryIPs)
+    db.openConnections(username, password,aryBuckets,aryIPs)
      .then((result) =>{
 
         if(result === true){
         
             let strQuery = 'select * from default limit 10' // To get 10 records from default bucket
                  
-            let objBucket = cluster.getBuckets()['default']
+            let objBucket = db.getBuckets()['default']
                 
             getN1QLResults(strQuery, objBucket)
                  
@@ -265,7 +265,7 @@
                     
                 .catch((e) => console.error(e))        
         }else{
-            
+            console.error(result)
         }
 
     
@@ -290,8 +290,6 @@
         .then((result) =>{
         
             if(result === true){
-                
-            }else{
                 let strKey = ['key1','key2']
                 let objBucket = cluster.getBuckets()['default']
                 
@@ -302,6 +300,9 @@
                     .catch((e) => {
                         console.error(e)
                     })
+                
+            }else{
+                console.error(result)
             }
         
         .catch((e) => {
